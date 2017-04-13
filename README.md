@@ -4,7 +4,7 @@
 
 The goal of this assignment is to make a form for addresses that uses AJAX to autofill city/state from a zip code.
 
-####ERRORS:
+##### ERRORS:
 XMLHttpRequest cannot load *url*. No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'null' is therefore not allowed access.
 
 [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS). 
