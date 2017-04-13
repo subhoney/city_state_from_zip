@@ -22,8 +22,24 @@
       // watch the zip field for a valid entry
       $("#zip").keyup(function() {
         var el = $(this);
-        if ((el.val().length == 5) && (is_int(el.val()))) {
-          // ajax here.
+        if ((el.val().length == 5) && (is_int(el.val()))) { // is_int may be unncessary if all browswers sppt html5
+
+          // ajax call
+          $.ajax({
+            url: "http://zip.elevenbasetwo.com", // go to this url
+            cache: false, // don't use your cache
+            dataType: "json", // fetch this datatype
+            type: "GET", // use this method agint their api
+            data: "zip=" + el.val(), // get this value
+            success: function(result, success) { // did it work? if so, do this...
+              $(".fancy_form div > div").slideDown(); // show the other fields
+              $("#city").val(result.city); // autofill the city
+              $("#state").val(result.state); // autofill the state
+              $(".zip-error").hide(); // tango uniform hider
+              $("address-line-1").focus(); // cursor to next important UI thing for the user
+            }
+          })
+
         }
       })
 
