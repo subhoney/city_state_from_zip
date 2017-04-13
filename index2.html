@@ -4,25 +4,18 @@
   <title>Address Form Example</title>
 
   <!-- Bootstrap et al. -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <!-- Custom CSS -->
   <link rel="stylesheet" href="custom.css" type="text/css">
 
-  <!-- Custom JS -->
-
-  <script type="text/javascript">
-    //<![CDATA[
+  <script>
     $(function() {
-      // IMPORTANT: Fill in your client key
-      var clientKey = "js-22mCydRLGEXHKAJOJVtOCP9hAqz7wmFzo2cXg3IWIGEshng0iKOVzYc9pMgV8Wvx";
-
+      var clientKey = "22mCydRLGEXHKAJOJVtOCP9hAqz7wmFzo2cXg3IWIGEshng0iKOVzYc9pMgV8Wvx";
       var cache = {};
-      var container = $("#example1");
-      var errorDiv = container.find("div.text-error");
+      var worker = $("#worker");
+      var errorDiv = worker.find("div.text-error");
 
       /** Handle successful response */
       function handleResp(data) {
@@ -31,13 +24,13 @@
           errorDiv.text(data.error_msg);
         else if ("city" in data) {
           // Set city and state
-          container.find("input[name='city']").val(data.city);
-          container.find("input[name='state']").val(data.state);
+          worker.find("input[name='city']").val(data.city);
+          worker.find("input[name='state']").val(data.state);
         }
       }
 
       // Set up event handlers
-      container.find("input[name='zipcode']").on("keyup change", function() {
+      worker.find("input[name='zip']").on("keyup change", function() {
         // Get zip code
         var zipcode = $(this).val().substring(0, 5);
         if (zipcode.length == 5 && /^[0-9]+$/.test(zipcode)) {
@@ -75,47 +68,29 @@
         }
       }).trigger("change");
     });
-    //]]>
   </script>
 </head>
 
 <body>
-  <form action="#" method="post" class="fancy-form">
-    <div class="container" style="text-align: center">
-      <fieldset>
-        <legend>Address</legend>
 
-        <div>
-          <div>
-            <input type="text" name="address-line-1" id="address-line-1">
-            <label for="address-line-1">Street #1</label>
-          </div>
-        </div>
-        <div>
-          <div>
-            <input type="text" name="address-line-2" id="address-line-2">
-            <label for="address-line-2">Street #2</label>
-          </div>
-        </div>
-        <div>
-          <div class="city-wrap">
-            <input type="text" name="city" id="city">
-            <label for="city">City</label>
-          </div>
-          <div class="state-wrap">
-            <input type="text" name="state" id="state">
-            <label for="state">State</label>
-          </div>
-          <div class="zip-wrap">
-            <input type="text" pattern="[0-9]*" maxlength="5" required name="zip" id="zip">
-            <label for="zip">Zip</label>
-            <p class="zip-error">Not a real zip code.</p>
-          </div>
-        </div>
-
-      </fieldset>
+  <div class="container" id="worker">
+    <div class="row">
+      <div class="col">
+        <label>Zip Code</label>
+        <input type="text" name="zip" class="input-small" />
+        <div class="text-error"></div>
+      </div>
+      <div class="col">
+        <label>City</label>
+        <input type="text" name="city" />
+      </div>
+      <div class="col">
+        <label>State</label>
+        <input type="text" name="state" class="input-mini" />
+      </div>
     </div>
-  </form>
+  </div>
+
 </body>
 
 </html>
