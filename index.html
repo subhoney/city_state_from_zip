@@ -37,6 +37,9 @@
               $("#state").val(result.state); // autofill the state
               $(".zip-error").hide(); // tango uniform hider
               $("address-line-1").focus(); // cursor to next important UI thing for the user
+            },
+            error: function(result, success) {
+              $(".zip-error").show(); // error!
             }
           })
 
@@ -79,10 +82,6 @@
             <label for="zip">Zip</label>
             <p class="zip-error">Not a real zip code.</p>
           </div>
-        </div>
-
-        <div>
-          <input type="submit" value="Submit">
         </div>
 
       </fieldset>
