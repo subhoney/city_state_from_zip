@@ -19,6 +19,14 @@
       // hide the fancy forms
       $(".fancy-form div > div").hide();
 
+      // watch the zip field for a valid entry
+      $("#zip").keyup(function() {
+        var el = $(this);
+        if ((el.val().length == 5) && (is_int(el.val()))) {
+          // ajax here.
+        }
+      })
+
     });
   </script>
 </head>
